@@ -52,7 +52,7 @@
       <div id="lead-content">
         <h1>Batandwa Mgutsi</h1>
         <h2>Fullstack Web and Mobile Developer</h2>
-        <a href="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/448d59ad-a6d4-427d-918c-3d43d0eb0fed/A4_-_1resume-4.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20211017%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211017T222401Z&X-Amz-Expires=3600&X-Amz-Signature=f33778c173a11bdc33150939bd52ae8ebbc6418ae721f3125172943bb3a83d92&X-Amz-SignedHeaders=host" class="btn-rounded-white"
+        <a href="{{{otherData.resumeLink}}}" class="btn-rounded-white"
           >Download Resume</a
         >
       </div>
@@ -76,7 +76,7 @@
             <h2 class="heading">About Me</h2>
           </div>
           <div class="col-md-8">
-            <p>I&#39;m a Fullstack mobile and web developer currently studying Computer Science and Computer Engineering at the University of Cape Town with the aim of specialising in Software Engineering. Outside of school, I cycle and also involved in the development of the Varsity Newspaper (UCT) website, where I use my software engineering skills to help build a better website for the group. I also serve as an engineering lead and designer at Oreal, which is just a group of mates who build stuff together. I&#39;m interested in exploring the fields of Software Engineering, Machine Learning and AI.</p>
+            <p>{{otherData.aboutMe}}</p>
           </div>
         </div>
       </div>
@@ -86,33 +86,27 @@
     <div id="experience" class="background-alt">
       <h2 class="heading">Experience</h2>
       <div id="experience-timeline">
-        <div data-date="August 2021 - Present">
-          <h3>Varsity Newspaper (UCT)</h3>
-          <h4>Web Developer</h4>
-          <p>Working with 4 other developers to rewrite the Varsity Newspaper website for a better user experience and optimise it for search engines.</p>
+        {{#otherData.experience}}
+        <div data-date="{{period}}">
+          <h3>{{companyName}}</h3>
+          <h4>{{role}}</h4>
+          <p>{{description}}</p>
         </div>
-        <div data-date="May 2020 - June 2021">
-          <h3>Filledstacks (Pty) Ltd</h3>
-          <h4>Flutter Developer</h4>
-          <p>Lead the development of an integated testing tool for Flutter apps. The tool had its UI written in Flutter for MacOs and Windows with Google Firebase used for the backend over a RESTful API.</p>
-        </div>
-        <div data-date="February 2017 - Present">
-          <h3>Self Employed</h3>
-          <h4>Mobile App Developer</h4>
-          <p>Working from home building Android applications and back-end APIs with Java, Dart, Flutter, Firebase, PHP, and NodeJS.</p>
-        </div>
+        {{/otherData.experience}}
       </div>
     </div>
     <!-- End #experience -->
 
     <div id="education">
       <h2 class="heading">Education</h2>
+      {{#otherData.education}}
       <div class="education-block">
-        <h3>University of Cape Town</h3>
-        <span class="education-date">Feb 2020 - Nov 2023</span>
-        <h4></h4>
-        <p>Currently studying towards a BSc in Computer at UCT. I&#39;m doing Computer Engineering as my second major.</p>
+        <h3>{{institution}}</h3>
+        <span class="education-date">{{period}}</span>
+        <h4>{{qualification}}</h4>
+        <p>{{description}}</p>
       </div>
+      {{/otherData.education}}
       <!-- End .education-block -->
 
       <!-- <div class="education-block">
@@ -139,18 +133,20 @@
       <h2 class="heading">Latest Projects</h2>
       <div class="container">
         <div class="row">
+          {{#otherData.latestProjects}}
           <div class="project shadow-large">
             <div class="project-image">
-              <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/27cd0f52-d30c-428d-a31b-9983dbebb219/lytstudio.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20211017%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211017T222358Z&X-Amz-Expires=3600&X-Amz-Signature=50d3fed3254e985e9aa1dff1cdb414ff63ade731e4ae761bae40859747eda9d1&X-Amz-SignedHeaders=host" />
+              <img src="{{{logoUrl}}}" />
             </div>
             <!-- End .project-image -->
             <div class="project-info">
-              <h3>LytStudio</h3>
-              <p>LytStudio is a work-in-progress online learning and tutoring platform that aims to make education more affordable to every child out there. The platform features it&#39;s own bandwidth efficient video format that can encode beyond 4K video graphics at a very small file size. The stack is Flutter and a bit of C.</p>
-              <a href="https://play.google.com/store/apps/details?id=com.lytowl.lytstudio">View Project</a>
+              <h3>{{name}}</h3>
+              <p>{{description}}</p>
+              <a href="{{{url}}}">View Project</a>
             </div>
             <!-- End .project-info -->
           </div>
+          {{/otherData.latestProjects}}
           <!-- End .project -->
         </div>
       </div>
@@ -160,14 +156,9 @@
     <div id="skills">
       <h2 class="heading">Top Skills</h2>
       <ul>
-        <li>Flutter</li>
-        <li>React</li>
-        <li>Firebase</li>
-        <li>Figma</li>
-        <li>Node.js</li>
-        <li>Dart</li>
-        <li>Typescript</li>
-        <li>Java</li>
+        {{#otherData.topSkills}}
+        <li>{{.}}</li>
+        {{/otherData.topSkills}}
       </ul>
     </div>
     <!-- End #skills -->
