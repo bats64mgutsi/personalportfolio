@@ -4,7 +4,8 @@
   "description": "",
   "main": "js/scripts.js",
   "scripts": {
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "build": "echo NoNeedToBuild"
   },
   "keywords": [
     "portfolio",
