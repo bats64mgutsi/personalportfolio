@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm ci && npx motionlink ${{ secrets.MOTION_LINK_VARS }}
-      - uses: jsmrcaga/action-netlify-deploy@v1.1.0
+      - uses: jsmrcaga/action-netlify-deploy@master
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.MY_TOKEN_SECRET }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_TO_PROD: true
           build_directory: "./"
-          
+
