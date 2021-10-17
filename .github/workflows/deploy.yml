@@ -9,7 +9,9 @@ jobs:
   deploy:
     name: 'Deploy to Netlify'
     runs-on: ubuntu-latest
+    
     steps:
+      - uses: actions/checkout@v2
       - run: npm ci && npx motionlink ${{ secrets.MOTION_LINK_VARS }}
       - uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
