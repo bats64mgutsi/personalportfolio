@@ -1,4 +1,5 @@
-module.exports = [
+/** @type {import("motionlink-cli/lib/models/config_models").TemplateRule[]} */
+const rules = [
   {
     template: "index.template.html",
     outDir: ".",
@@ -98,3 +99,5 @@ module.exports = [
     ],
   },
 ];
+
+export default rules;
