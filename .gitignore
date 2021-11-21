@@ -1,1 +1,7 @@
-node_modules/
+node_modules/*
+
+# Ignore all images except those not fetched from notion
+images/*
+!images/lead-bg.jpg
+!images/project.jpg
+

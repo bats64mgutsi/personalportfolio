@@ -6,6 +6,7 @@ const rules = [
     uses: {
       database: "personalInfoDb",
       takeOnly: 1,
+      fetchBlocks: false,
       map: (page, ctx) => {
         page.otherData.resumeLink =
           page.data.properties.Resume.files[0].file.url;
@@ -37,6 +38,7 @@ const rules = [
     alsoUses: [
       {
         database: "educationDb",
+        fetchBlocks: false,
         map: (page, _) => {
           page.otherData.institution =
             page.data.properties.Institution.title[0].plain_text;
@@ -55,6 +57,7 @@ const rules = [
       },
       {
         database: "experienceDb",
+        fetchBlocks: false,
         sort: [
           {
             timestamp: "created_time",
@@ -78,16 +81,19 @@ const rules = [
       {
         database: "latestProjectsDb",
         takeOnly: 3,
+        fetchBlocks: false,
         sort: [
           {
             timestamp: "last_edited_time",
             direction: "descending",
           },
         ],
-        map: (page, _) => {
+        map: (page, ctx) => {
           page.otherData.name = page.data.properties.Name.title[0].plain_text;
 
-          page.otherData.logoUrl = page.data.properties.Logo.files[0].file.url;
+          page.otherData.logoUrl = ctx.fetchMedia(
+            page.data.properties.Logo.files[0].file.url
+          );
 
           page.otherData.description =
             page.data.properties.Description.rich_text[0].plain_text;
