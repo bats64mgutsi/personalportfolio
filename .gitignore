@@ -5,3 +5,5 @@ images/*
 !images/lead-bg.jpg
 !images/project.jpg
 
+# Ignore all motionlink other_media
+other_media/*

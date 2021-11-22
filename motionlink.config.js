@@ -8,8 +8,9 @@ const rules = [
       takeOnly: 1,
       fetchBlocks: false,
       map: (page, ctx) => {
-        page.otherData.resumeLink =
-          page.data.properties.Resume.files[0].file.url;
+        page.otherData.resumeLink = ctx.fetchMedia(
+          page.data.properties.Resume.files[0].file.url
+        );
 
         page.otherData.aboutMe =
           page.data.properties.AboutMe.rich_text[0].plain_text;
