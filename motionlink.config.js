@@ -1,3 +1,6 @@
+const markdownService = require("motionlink-cli/lib/services/markdown_service");
+const ObjectTransformers = markdownService.ObjectTransformers;
+
 /** @type {import("motionlink-cli/lib/models/config_models").TemplateRule[]} */
 const rules = [
   {
@@ -8,12 +11,11 @@ const rules = [
       takeOnly: 1,
       fetchBlocks: false,
       map: (page, ctx) => {
-        page.otherData.resumeLink = ctx.fetchMedia(
-          page.data.properties.Resume.files[0].file.url
-        );
+        page.otherData.resumeLink = "";
 
-        page.otherData.aboutMe =
-          page.data.properties.AboutMe.rich_text[0].plain_text;
+        page.otherData.aboutMe = ObjectTransformers.transform_all(
+          page.data.properties.AboutMe.rich_text
+        );
 
         page.otherData.topSkills =
           page.data.properties.TopSkills.multi_select.map(
@@ -41,17 +43,21 @@ const rules = [
         database: "educationDb",
         fetchBlocks: false,
         map: (page, _) => {
-          page.otherData.institution =
-            page.data.properties.Institution.title[0].plain_text;
+          page.otherData.institution = ObjectTransformers.transform_all(
+            page.data.properties.Institution.title
+          );
 
-          page.otherData.qualification -
-            page.data.properties.Qualification.rich_text[0].plain_text;
+          page.otherData.qualification = ObjectTransformers.transform_all(
+            page.data.properties.Qualification.rich_text
+          );
 
-          page.otherData.description =
-            page.data.properties.Description.rich_text[0].plain_text;
+          page.otherData.description = ObjectTransformers.transform_all(
+            page.data.properties.Description.rich_text
+          );
 
-          page.otherData.period =
-            page.data.properties.Period.rich_text[0].plain_text;
+          page.otherData.period = ObjectTransformers.transform_all(
+            page.data.properties.Period.rich_text
+          );
 
           return page;
         },
@@ -66,16 +72,20 @@ const rules = [
           },
         ],
         map: (page, _) => {
-          page.otherData.companyName =
-            page.data.properties.CompanyName.title[0].plain_text;
+          page.otherData.companyName = ObjectTransformers.transform_all(
+            page.data.properties.CompanyName.title
+          );
 
           page.otherData.role = page.data.properties.Role.select.name;
 
-          page.otherData.description =
-            page.data.properties.Description.rich_text[0].plain_text;
+          page.otherData.description = ObjectTransformers.transform_all(
+            page.data.properties.Description.rich_text
+          );
 
-          page.otherData.period =
-            page.data.properties.Period.rich_text[0].plain_text;
+          page.otherData.period = ObjectTransformers.transform_all(
+            page.data.properties.Period.rich_text
+          );
+
           return page;
         },
       },
@@ -90,14 +100,17 @@ const rules = [
           },
         ],
         map: (page, ctx) => {
-          page.otherData.name = page.data.properties.Name.title[0].plain_text;
-
-          page.otherData.logoUrl = ctx.fetchMedia(
-            page.data.properties.Logo.files[0].file.url
+          page.otherData.name = ObjectTransformers.transform_all(
+            page.data.properties.Name.title
           );
 
-          page.otherData.description =
-            page.data.properties.Description.rich_text[0].plain_text;
+          page.otherData.logoUrl = ctx.fetchMedia(
+            page.data.properties.Logo.files[0]
+          ).src;
+
+          page.otherData.description = ObjectTransformers.transform_all(
+            page.data.properties.Description.rich_text
+          );
 
           page.otherData.url = page.data.properties.Url.url;
           return page;

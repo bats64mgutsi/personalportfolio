@@ -7,3 +7,5 @@ images/*
 
 # Ignore all motionlink other_media
 other_media/*
+
+secrets/*
