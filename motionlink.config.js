@@ -1,5 +1,6 @@
 const markdownService = require("motionlink-cli/lib/services/markdown_service");
 const ObjectTransformers = markdownService.ObjectTransformers;
+const showdown = require("showdown");
 
 /** @type {import("motionlink-cli/lib/models/config_models").TemplateRule[]} */
 const rules = [
@@ -7,30 +8,30 @@ const rules = [
     template: "index.template.html",
     outDir: ".",
     uses: {
-      database: "personalInfoDb",
+      database: "personalInformation",
       takeOnly: 1,
-      fetchBlocks: false,
+      fetchBlocks: true,
       map: (page, ctx) => {
         page.otherData.resumeLink = "";
 
-        page.otherData.aboutMe = ObjectTransformers.transform_all(
-          page.data.properties.AboutMe.rich_text
-        );
+        const aboutMeMarkdown = ctx.genMarkdownForBlocks(page.blocks);
+
+        page.otherData.aboutMe = new showdown.Converter().makeHtml(aboutMeMarkdown);
 
         page.otherData.topSkills =
           page.data.properties.TopSkills.multi_select.map(
             (skill) => skill.name
           );
 
-        page.otherData.latestProjects = ctx.others.latestProjectsDb.pages.map(
+        page.otherData.latestProjects = ctx.others.latestProjects.pages.map(
           (page) => page.otherData
         );
 
-        page.otherData.education = ctx.others.educationDb.pages.map(
+        page.otherData.education = ctx.others.education.pages.map(
           (page) => page.otherData
         );
 
-        page.otherData.experience = ctx.others.experienceDb.pages.map(
+        page.otherData.experience = ctx.others.experience.pages.map(
           (page) => page.otherData
         );
 
@@ -40,7 +41,7 @@ const rules = [
     },
     alsoUses: [
       {
-        database: "educationDb",
+        database: "education",
         fetchBlocks: false,
         map: (page, _) => {
           page.otherData.institution = ObjectTransformers.transform_all(
@@ -63,7 +64,7 @@ const rules = [
         },
       },
       {
-        database: "experienceDb",
+        database: "experience",
         fetchBlocks: false,
         sort: [
           {
@@ -90,7 +91,7 @@ const rules = [
         },
       },
       {
-        database: "latestProjectsDb",
+        database: "latestProjects",
         takeOnly: 3,
         fetchBlocks: false,
         sort: [
