@@ -9,3 +9,5 @@ images/*
 other_media/*
 
 secrets/*
+
+.DS_Store
