@@ -5,7 +5,7 @@ on:
     tags:
       - 'motion-link-*'
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
