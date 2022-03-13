@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'motion-link-*'
+    branches:
+      - main
 
 jobs:
   deploy:
