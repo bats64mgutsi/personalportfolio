@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Batandwa Mgutsi</title>
+    <title>{{{otherData.personName}}}</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link
@@ -50,9 +50,9 @@
 
     <div id="lead">
       <div id="lead-content">
-        <h1>Batandwa Mgutsi</h1>
-        <h2>Fullstack Web and Mobile Developer</h2>
-        <a href="mailto:b.mgutsi@gmail.com" class="btn-rounded-white"
+        <h1>{{{otherData.personName}}}</h1>
+        <h2>{{{otherData.headline}}}</h2>
+        <a href="mailto:{{{otherData.email}}}" class="btn-rounded-white"
           >Work with Me</a
         >
       </div>
@@ -75,9 +75,7 @@
           <div class="col-md-4">
             <h2 class="heading">About Me</h2>
           </div>
-          <div class="col-md-8">
-            {{{otherData.aboutMe}}}
-          </div>
+          <div class="col-md-8">{{{otherData.aboutMe}}}</div>
         </div>
       </div>
     </div>
@@ -107,24 +105,6 @@
         <p>{{description}}</p>
       </div>
       {{/otherData.education}}
-      <!-- End .education-block -->
-
-      <!-- <div class="education-block">
-            <h3>University of Ottawa</h3>
-            <span class="education-date">Sept 2016 - Sept 2017</span>
-            <h4>Bachelor of Science in Computer Science</h4>
-            <ul>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-            </ul>
-        </div> -->
       <!-- End .education-block -->
     </div>
     <!-- End #education -->
@@ -194,7 +174,9 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-5 copyright">
-            <p>Copyright &copy; 2022 Batandwa Mgutsi</p>
+            <p>
+              Copyright &copy; {{{otherData.year}}} {{{otherData.personName}}}
+            </p>
           </div>
           <div class="col-sm-2 top">
             <span id="to-top">
@@ -204,24 +186,22 @@
           <div class="col-sm-5 social">
             <ul>
               <li>
-                <a href="https://github.com/bats64mgutsi" target="_blank"
+                <a href="{{{otherData.github}}}" target="_blank"
                   ><i class="fa fa-github" aria-hidden="true"></i
                 ></a>
               </li>
               <li>
-                <a
-                  href="https://www.linkedin.com/in/batandwamgutsi/"
-                  target="_blank"
+                <a href="{{{otherData.linkedin}}}" target="_blank"
                   ><i class="fa fa-linkedin" aria-hidden="true"></i
                 ></a>
               </li>
               <li>
-                <a href="https://twitter.com/BMgutsi" target="_blank"
+                <a href="{{{otherData.twitter}}}" target="_blank"
                   ><i class="fa fa-twitter" aria-hidden="true"></i
                 ></a>
               </li>
               <li>
-                <a href="https://medium.com/@b.mgutsi" target="_blank"
+                <a href="{{{otherData.medium}}}" target="_blank"
                   ><i class="fa fa-medium" aria-hidden="true"></i
                 ></a>
               </li>
